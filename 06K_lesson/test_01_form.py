@@ -1,4 +1,4 @@
-import pytest
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -6,15 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
-@pytest.fixture
-def driver():
+def test_01_form():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    yield driver
-    driver.quit()
-
-
-def test_01_form(driver):
     driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
 
     driver.find_element(By.NAME, "first-name").send_keys("Иван")
@@ -41,8 +34,7 @@ def test_01_form(driver):
     assert color_zip == alert_danger_color, f"Expected {alert_danger_color}, but got {color_zip}"
 
     alert_success_color = "rgba(209, 231, 221, 1)"
-    fields = ["first_name", "last_name", "address", "e-mail", "phone_number", "city", "country", "job_position",
-              "company"]
+    fields = ["first-name", "last-name", "address", "e-mail", "phone", "city", "country", "job-position", "company"]
     for field_name in fields:
         field = driver.find_element(By.CSS_SELECTOR, f"[id='{field_name}']")
         field_color = field.value_of_css_property("background-color")

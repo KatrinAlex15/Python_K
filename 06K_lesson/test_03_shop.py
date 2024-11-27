@@ -8,15 +8,15 @@ def test_03_shop():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get("https://www.saucedemo.com/")
 
-    driver.find_element(By.ID, "user-name").send_keys("standart_user")
+    driver.find_element(By.ID, "user-name").send_keys("standard_user")
     driver.find_element(By.ID, "password").send_keys("secret_sauce")
     driver.find_element(By.ID, "login-button").click()
 
-    driver.find_element(By.ID, "add-to-card-sauce-labs-backpack").click()
-    driver.find_element(By.ID, "add-to-card-sauce-labs-bolt-t-shirt").click()
-    driver.find_element(By.ID, "add-to-card-sauce-labs-onesie").click()
+    driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
+    driver.find_element(By.ID, "add-to-cart-sauce-labs-bolt-t-shirt").click()
+    driver.find_element(By.ID, "add-to-cart-sauce-labs-onesie").click()
 
-    driver.find_element(By.CLASS_NAME, "shoping_cart_link").click()
+    driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
 
     driver.find_element(By.ID, "checkout").click()
 
@@ -29,5 +29,5 @@ def test_03_shop():
     total_element = driver.find_element(By.CLASS_NAME, "summary_total_label")
     total_value = total_element.text
     assert total_value == "Total: $58.29"
-
     driver.quit()
+
